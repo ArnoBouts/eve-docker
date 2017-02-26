@@ -1,8 +1,8 @@
 #!/bin/sh
 
-BEARER=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${PLUGIN_IMAGE}:pull" | cut -d'"' -f4)
+BEARER=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${PLUGIN_BASE_IMAGE}:pull" | cut -d'"' -f4)
 
-SHA=$(curl -s -I -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -H "Authorization: Bearer ${BEARER}" -X GET "https://registry.hub.docker.com/v2/library/${PLUGIN_IMAGE}/manifests/${PLUGIN_TAG}" | grep "Docker-Content-Digest" | cut -d" " -f2)
+SHA=$(curl -s -I -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -H "Authorization: Bearer ${BEARER}" -X GET "https://registry.hub.docker.com/v2/${PLUGIN_BASE_IMAGE}/manifests/${PLUGIN_TAG}" | grep "Docker-Content-Digest" | cut -d" " -f2)
 
 cd $pwd/eve
 

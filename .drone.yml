@@ -1,0 +1,7 @@
+pipeline:
+  publish:
+    image: plugins/docker
+    registry: no-cloud.fr
+    repo: no-cloud.fr/eve/docker
+    tag: latest
+    file: Dockerfile
